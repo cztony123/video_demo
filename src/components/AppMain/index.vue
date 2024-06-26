@@ -1,24 +1,24 @@
 <template>
-    <div>
-        4445555
+    <div class="main">
+        主体
     </div>
 </template>
 
 <script>
 export default {
-    data () {
-        return {
+    data(){
+        return{
             
         }
     },
     methods: {
         
-    }
-}
+    },
+};
 </script>
 
-<style lang="less" scope>
-    
-    
+<style scoped>
+.main {
+    color: #fff;
+}
 </style>
-
