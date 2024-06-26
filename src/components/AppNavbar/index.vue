@@ -30,9 +30,11 @@ export default {
 
 <style scoped>
     .van-tabbar {
-        background-color: transparent;
+        background-color: #333333;
+        border: none;
+        height: 60px;
     }
     .van-tabbar-item{
-        background-color: transparent;
+        background-color: #333333;
     }
 </style>
