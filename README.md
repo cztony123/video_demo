@@ -1,16 +1,18 @@
 # video_demo
 
-## Project setup
+## 项目依赖
 ```
 npm install
 ```
-
-### Compiles and hot-reloads for development
+### node版本
 ```
-npm run serve
+14.20.0
 ```
-
-### Compiles and minifies for production
+### 项目运行
+```
+npm run dev
+```Compiles and minifies for production
+### 
 ```
 npm run build
 ```
