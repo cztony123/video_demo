@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue, { reactive } from 'vue'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
@@ -15,34 +15,35 @@ const routes = [
         component: () => import('../views/layout/index.vue'),
         children: [
             {
+                reactive: '/home',
                 path: "/home",
                 component: () => import('@/views/home/index'),
                 meta:{
                     title:"首页"
                 }
             }, 
-            // {
-            //     path: "/racetype",
-            //     component: () => import('@/views/race/racetype'),
-            //     meta:{
-            //         title:"种族"
-            //     }
-            // },
-            // {
-            //     path: "/raceinfo",
-            //     component: () => import('@/views/race/raceinfo'),
-            //     meta:{
-            //         title:"种族2"
-            //     }
-            // },
+            {
+                path: "/search",
+                component: () => import('@/views/search/index.vue'),
+                meta:{
+                    title:"查询"
+                }
+            },
+            {
+                path: "/user",
+                component: () => import('@/views/user/index.vue'),
+                meta:{
+                    title:"用户"
+                }
+            },
             
-            // {
-            //     path: "/kucunsearch",
-            //     component: () => import('@/views/kucun/kucunsearch'),
-            //     meta:{
-            //         title:"库存查询"
-            //     }
-            // },
+            {
+                path: "/setting",
+                component: () => import('@/views/setting/index.vue'),
+                meta:{
+                    title:"设置"
+                }
+            },
             // {
             //     path: "/chukusearch",
             //     component: () => import('@/views/kucun/chukusearch'),

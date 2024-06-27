@@ -1,10 +1,10 @@
 <template>
     <div class="navbar" route>
         <van-tabbar class="bottom_menu" v-model="active" active-color="#3899FB" inactive-color="#FFF" @change="onChange">
-            <van-tabbar-item icon="home-o" >标签</van-tabbar-item>
-            <van-tabbar-item icon="search" to="/home">标签</van-tabbar-item>
-            <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-            <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+            <van-tabbar-item icon="home-o" to="/home" >首页</van-tabbar-item>
+            <van-tabbar-item icon="search" to="/search">查询</van-tabbar-item>
+            <van-tabbar-item icon="friends-o" to="/user">用户</van-tabbar-item>
+            <van-tabbar-item icon="setting-o" to="/setting">设置</van-tabbar-item>
         </van-tabbar>
     </div>
 </template>
