@@ -4,7 +4,9 @@
             <van-tab title="全部视频" swipeable>
                 <tabOne></tabOne>
             </van-tab>
-            <van-tab title="惊悚" swipeable>内容 2</van-tab>
+            <van-tab title="惊悚" swipeable>
+                <tabTwo></tabTwo>
+            </van-tab>
             <van-tab title="恐怖">内容 3</van-tab>
             <van-tab title="悬疑">内容 4</van-tab>
             <van-tab title="灾难">内容 4</van-tab>
@@ -17,8 +19,12 @@
 
 <script>
 import tabOne from './component/tabOne.vue'
+import tabTwo from './component/tabTwo.vue'
 export default {
-    components: {tabOne},
+    components: {
+        tabOne,
+        tabTwo,
+    },
     data () {
         return {
             active: ''
