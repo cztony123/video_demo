@@ -1,6 +1,6 @@
 <template>
     <div>
-        <van-tabs v-model="active" animated scrollspy background="#454545" title-inactive-color="#8d8d8d" title-active-color="#fff">
+        <van-tabs v-model="active" animated background="#454545" title-inactive-color="#8d8d8d" title-active-color="#fff">
             <van-tab title="全部视频" swipeable>
                 <tabOne></tabOne>
             </van-tab>

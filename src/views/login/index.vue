@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         checkForm(){
-            this.$router.push('/Layout')
+            this.$router.push('/home')
         },
         showPassword(){
             this.isShow = !this.isShow

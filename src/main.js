@@ -5,7 +5,9 @@ import store from './store'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import './views/style/index.css'
+import { Lazyload } from 'vant';
 
+Vue.use(Lazyload);
 Vue.use(Vant);
 Vue.config.productionTip = false
 
