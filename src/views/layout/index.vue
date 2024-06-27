@@ -1,8 +1,10 @@
 <template>
     <div class="indexBox">
-        <app-heder></app-heder>
-        <app-navbar></app-navbar>
-        <app-main></app-main>
+        <div class="header"><app-heder></app-heder></div>
+        <main class="main">
+            <app-main></app-main>
+            <app-navbar></app-navbar>
+        </main>
     </div>
 </template>
 
@@ -24,3 +26,22 @@ export default {
     },
 };
 </script>
+<style>
+.indexBox{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+}
+.header{
+    height: 54px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.main{
+    margin-top: 54px;
+    height: calc(100vh - 114px);
+}
+</style>

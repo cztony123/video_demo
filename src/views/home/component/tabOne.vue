@@ -1,6 +1,6 @@
 <template>
     <div class="one-page">
-        <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+        <van-pull-refresh v-model="isLoading" @refresh="onRefresh" style="min-height: calc(100% - 44px);">
             <van-grid :column-num="2">
                 <van-grid-item v-for="img in imageList">
                     <img :src="img" v-lazy="img" />
@@ -61,5 +61,7 @@ export default {
     img{
         width: 100%;
     }
+    height: calc(100vh - 158px);
+    overflow-y: auto;
 }
 </style>

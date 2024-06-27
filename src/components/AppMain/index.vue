@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="main-page">
         <router-view></router-view>
     </div>
 </template>
@@ -18,7 +18,9 @@ export default {
 </script>
 
 <style scoped>
-.main {
+.main-page {
     color: #fff;
+    height: calc(100vh - 114px);
+    overflow-y: auto;
 }
 </style>
