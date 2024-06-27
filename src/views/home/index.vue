@@ -1,12 +1,16 @@
 <template>
     <div>
-        <van-tabs v-model="active">
-            <van-tab title="标签 1">
+        <van-tabs v-model="active" animated scrollspy background="#454545" title-inactive-color="#8d8d8d" title-active-color="#fff">
+            <van-tab title="全部视频" swipeable>
                 <tabOne></tabOne>
             </van-tab>
-            <van-tab title="标签 2">内容 2</van-tab>
-            <van-tab title="标签 3">内容 3</van-tab>
-            <van-tab title="标签 4">内容 4</van-tab>
+            <van-tab title="惊悚" swipeable>内容 2</van-tab>
+            <van-tab title="恐怖">内容 3</van-tab>
+            <van-tab title="悬疑">内容 4</van-tab>
+            <van-tab title="灾难">内容 4</van-tab>
+            <van-tab title="科幻">内容 4</van-tab>
+            <van-tab title="奇幻">内容 4</van-tab>
+            <van-tab title="动漫">内容 4</van-tab>
         </van-tabs>
     </div>
 </template>
@@ -17,7 +21,7 @@ export default {
     components: {tabOne},
     data () {
         return {
-            
+            active: ''
         }
     },
     methods: {
@@ -26,8 +30,7 @@ export default {
 }
 </script>
 
-<style lang="less" scope>
-    
+<style scoped lang="scss">
     
 </style>
 
