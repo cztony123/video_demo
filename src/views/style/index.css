@@ -5,3 +5,5 @@ html, body, #app{
     margin: 0;
     background: #2A2A2A;
 }
+
+::-webkit-scrollbar {display:none}
