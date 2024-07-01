@@ -46,7 +46,7 @@ export default {
     data() {
         return {
             isLoading: false, //下拉刷新遮罩层
-            images, //列表数据
+            images, //轮播图数据
             imageList, //列表数据
             isOpen: false, //列数下拉初始隐藏
             rowNum: 2, //列数初始值
@@ -83,6 +83,7 @@ export default {
     line-height: 150px;
     text-align: center;
     background-color: #39a9ed;
+    height: 120px;
 }
 
 /*页面高度设定*/
@@ -94,10 +95,6 @@ export default {
     }
 }
 
-/*轮播图*/
-.van-swipe-item{
-    height: 120px;
-}
 
 /*视频标题*/
 .video-title{
