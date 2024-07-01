@@ -27,7 +27,7 @@
                     </span>
                 </div>
                 <div class="grid-list">
-                    <van-grid :column-num="1">
+                    <van-grid :column-num="rowNum">
                         <van-grid-item v-for="img in imageList">
                             <img :src="img" v-lazy="img" />
                         </van-grid-item>
@@ -49,8 +49,33 @@ export default {
                 require('../../../assets/image/lunbo3.jpg'),
             ],
             isLoading: false,
-            imageList,
-            rowNum: 1,
+            imageList: [
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-1.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+            ],
+            rowNum: 2,
             option1: [
                 { text: '1列', value: 1 },
                 { text: '2列', value: 2 },
@@ -61,8 +86,6 @@ export default {
     },
     created() {
         
-        console.log(this.imageList)
-        console.log('this.imageList')
     },
     methods: {
         //下拉刷新
