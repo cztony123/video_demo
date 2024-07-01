@@ -39,43 +39,14 @@
 </template>
 <script>
 import { Toast } from 'vant';
-import imageList from '../data.js';
+import { imageList, images } from '../data';
 export default {
     data() {
         return {
-            images: [
-                require('../../../assets/image/lunbo1.jpg'),
-                require('../../../assets/image/lunbo2.jpg'),
-                require('../../../assets/image/lunbo3.jpg'),
-            ],
-            isLoading: false,
-            imageList: [
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-                'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
-            ],
-            rowNum: 2,
+            isLoading: false, //下拉刷新遮罩层
+            images, //列表数据
+            imageList, //列表数据
+            rowNum: 2, //列数初始值
             option1: [
                 { text: '1列', value: 1 },
                 { text: '2列', value: 2 },
@@ -83,9 +54,6 @@ export default {
                 { text: '4列', value: 4 },
             ],
         };
-    },
-    created() {
-        
     },
     methods: {
         //下拉刷新
