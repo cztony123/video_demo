@@ -105,6 +105,7 @@ export default {
     display:flex;
     justify-content: space-between; 
     padding: 10px 10px;
+    font-size: 14px;
     .van-icon-fire-o{
         color: red;
         font-weight: 800;
