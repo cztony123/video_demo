@@ -18,52 +18,59 @@
                         <span>
                             更多<van-icon name="arrow"/>
                         </span>
-                        <span class="row-num">
+                        <span class="row-num" @click="isShow()">
                             <van-icon name="qr"/>
-                            <van-dropdown-menu>
-                                <van-dropdown-item v-model="rowNum" :options="option1" />
-                            </van-dropdown-menu>
                         </span>
+                        <div v-if="isOpen" class="dropdown-content">
+                            <div v-for="(item, index) in optionList" :key="index + 'item.text'" @click="selectOption(item)">
+                                {{ item.text }}
+                            </div>
+                        </div>
                     </span>
                 </div>
                 <div class="grid-list">
                     <van-grid :column-num="rowNum">
-                        <van-grid-item v-for="img in imageList">
-                            <img :src="img" v-lazy="img" />
+                        <van-grid-item v-for="item in imageList">
+                            <img :src="item.url" v-lazy="item.url" />
+                            <div class="video-name">{{item.videoName}}</div> 
                         </van-grid-item>
-                    </van-grid>
+                    </van-grid> 
                 </div>
             </div>
         </van-pull-refresh>
     </div>
 </template>
 <script>
-import { Toast } from 'vant';
-import { imageList, images } from '../data';
+import { imageList, images, optionList } from '../data';
 export default {
     data() {
         return {
             isLoading: false, //下拉刷新遮罩层
             images, //列表数据
             imageList, //列表数据
+            isOpen: false, //列数下拉初始隐藏
             rowNum: 2, //列数初始值
-            option1: [
-                { text: '1列', value: 1 },
-                { text: '2列', value: 2 },
-                { text: '3列', value: 3 },
-                { text: '4列', value: 4 },
-            ],
+            optionList, //列数下拉数据
         };
     },
     methods: {
         //下拉刷新
         onRefresh() {
             setTimeout(() => {
-                Toast('刷新成功');
                 this.isLoading = false;
-                this.count++;
             }, 1000);
         },
+
+        //点击下拉图标
+        isShow(){
+            this.isOpen =true
+        },
+
+        //点击下拉选项
+        selectOption(item) {
+            this.rowNum = item.value
+            this.isOpen = false;
+        }
     },
 };
 </script>
@@ -94,6 +101,7 @@ export default {
 
 /*视频标题*/
 .video-title{
+    position: relative;
     display:flex;
     justify-content: space-between; 
     padding: 10px 10px;
@@ -107,10 +115,39 @@ export default {
     }
 }
 
-.van-grid{
-    padding:8px
+/*视频列表*/
+.grid-list{
+    background: #000;
+    .video-name{
+        margin-top: 10px;
+        width: 100%;
+        color: #000;
+        text-align: center;
+    }
+    .van-grid{
+        padding:5px 5px
+    }
+    .van-grid-item{
+        padding:5px 5px;
+        img{
+            height: 225px;
+        }
+    }
 }
-.van-grid-item{
-    padding:8px
+
+//列数下拉
+.dropdown-content {
+    position: absolute;
+    width: 25%;
+    height: 150px;
+    top: 41px;
+    right: 0;
+    background-color: #000;
+    border: 1px solid #ddd;
+    z-index: 10;
+    div{
+        margin-top: 15px;
+        text-align: center;
+    }
 }
 </style>
