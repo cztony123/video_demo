@@ -9,10 +9,10 @@
             </van-tab>
             <van-tab title="恐怖">内容 3</van-tab>
             <van-tab title="悬疑">内容 4</van-tab>
-            <van-tab title="灾难">内容 4</van-tab>
-            <van-tab title="科幻">内容 4</van-tab>
-            <van-tab title="奇幻">内容 4</van-tab>
-            <van-tab title="动漫">内容 4</van-tab>
+            <van-tab title="灾难">内容 5</van-tab>
+            <van-tab title="科幻">内容 6</van-tab>
+            <van-tab title="奇幻">内容 7</van-tab>
+            <van-tab title="动漫">内容 8</van-tab>
         </van-tabs>
     </div>
 </template>

@@ -22,10 +22,10 @@
             
             <div class="navbar" route>
                 <van-tabbar class="bottom_menu" v-model="active" active-color="#3899FB" inactive-color="#FFF">
-                    <van-tabbar-item icon="home-o" name="/home" to="/home" >首页</van-tabbar-item>
-                    <van-tabbar-item icon="search" name="/search" to="/search">查询</van-tabbar-item>
-                    <van-tabbar-item icon="friends-o" name="/user" to="/user">用户</van-tabbar-item>
-                    <van-tabbar-item icon="setting-o" name="/setting" to="/setting">设置</van-tabbar-item>
+                    <van-tabbar-item icon="home-o" to="/home" >首页</van-tabbar-item>
+                    <van-tabbar-item icon="search" to="/search">查询</van-tabbar-item>
+                    <van-tabbar-item icon="friends-o" to="/user">用户</van-tabbar-item>
+                    <van-tabbar-item icon="setting-o" to="/setting">设置</van-tabbar-item>
                 </van-tabbar>
             </div>
         </main>

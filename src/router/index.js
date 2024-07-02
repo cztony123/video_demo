@@ -17,7 +17,7 @@ const routes = [
             {
                 reactive: '/home',
                 path: "/home",
-                component: () => import('@/views/home/index'),
+                component: () => import('@/views/home/index.vue'),
                 meta:{
                     title:"首页"
                 }
@@ -44,29 +44,16 @@ const routes = [
                     title:"设置"
                 }
             },
-            // {
-            //     path: "/chukusearch",
-            //     component: () => import('@/views/kucun/chukusearch'),
-            //     meta:{
-            //         title:"出库查询"
-            //     }
-            // },
-            // {
-            //     path: "/rukusearch",
-            //     component: () => import('@/views/kucun/rukusearch'),
-            //     meta:{
-            //         title:"入库查询"
-            //     }
-            // },
-            // {
-            //     path: "/user",
-            //     component: () => import('@/views/user/user'),
-            //     meta:{
-            //         title:"用户管理"
-            //     }
-            // }
         ]
-    }
+    },
+    {
+        path: "/details",
+        name: 'details',
+        component: () => import('@/views/home/details.vue'),
+        meta:{
+            title:"详情"
+        }
+    },
 ]
 
 const router = new VueRouter({
