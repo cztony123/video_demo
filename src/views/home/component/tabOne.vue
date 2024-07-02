@@ -30,7 +30,7 @@
                 </div>
                 <div class="grid-list">
                     <van-grid :column-num="rowNum">
-                        <van-grid-item v-for="item in imageList" @click="onPlay">
+                        <van-grid-item v-for="item in imageList" @click="onPlay(item)">
                             <img :src="item.url" v-lazy="item.url" />
                             <div class="video-name">{{item.videoName}}</div> 
                         </van-grid-item>
@@ -73,8 +73,8 @@ export default {
         },
 
         //点击播放跳转详情页
-        onPlay(){
-            this.$router.push('/details')
+        onPlay(item){
+            this.$router.push({ path: '/details', query: { item: item } })
         },
     },
 };
