@@ -2,8 +2,8 @@
     <div class="indexBox">
         <div class="header">
             <div class="header-page">
-                <div>
-                    LoGo
+                <div class="logo">
+                    <img src="../../assets/image/logo.png" alt="">
                 </div>
                 <div>
                     <van-search v-model="value" show-action shape="round" show-action-color='red' background="#2A2A2A" placeholder="请输入关键词" @click="onSearch(value)">
@@ -83,6 +83,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    .logo{
+        width: 45px;
+        img{
+            width: 100%;
+        }
+    }
     .van-search__action{
         display: flex;
         align-items: center;
