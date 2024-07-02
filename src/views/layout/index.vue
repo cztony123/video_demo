@@ -5,14 +5,22 @@
                 <div class="logo">
                     <img src="../../assets/image/logo.png" alt="">
                 </div>
-                <div>
+                <div class="searchBox">
                     <van-search v-model="value" show-action shape="round" show-action-color='red' background="#2A2A2A" placeholder="请输入关键词" @click="onSearch(value)">
                         <template #action>
                             <van-button round type="info" size="small" icon="search" color="#454545" @click="onSearch(value)">搜索</van-button>
                         </template>
                     </van-search>
                 </div>
-                <van-button round type="info" size="small" icon="filter-o" color="#454545" @click="onSearch(value)">筛选</van-button>
+                <van-cell is-link @click="showPopup">
+                    <van-button round type="info" size="small" icon="filter-o" color="#454545" @click="onSearch(value)">筛选</van-button>
+                </van-cell>
+                <van-popup v-model="show" position="top" :style="{ height: '30%' }">
+                    <div class="filterBox">
+                        <div class="filter-title" v-for="item in filterList">{{item.title}}</div>
+                        <div>123</div>
+                    </div>
+                </van-popup>
             </div>
         </div>
         <main class="main">
@@ -33,11 +41,14 @@
 </template>
 
 <script>
+import { filterList } from '../home/data';
 export default {
     data () {
         return {
             value: '',
-            active: 0
+            active: 0,
+            show: false,
+            filterList,
         }
     },
     created() {
@@ -53,12 +64,15 @@ export default {
                 break;
             default:
         }
-        console.log(this.$route.path)
+        console.log(this.filterList)
     },
     methods: {
         onSearch(val){
             console.log(val)
         },
+        showPopup() {
+      this.show = true;
+    },
     },
 };
 </script>
@@ -83,11 +97,15 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 54px;
     .logo{
-        width: 45px;
+        width: 35px;
         img{
             width: 100%;
         }
+    }
+    .searchBox{
+        width: 70%;
     }
     .van-search__action{
         display: flex;
@@ -100,6 +118,25 @@ export default {
     /*搜索框*/
     .van-search__content{
         background-color: #454545;
+        height: 28px;
+    }
+    
+    /*搜索框内容*/
+    ::v-deep .van-field__control{
+        color: #8d8d8d;
+    }
+    ::v-deep .van-field__body{
+        height: 18px;
+    }
+
+    /*搜索按钮*/
+    .van-button{
+        height: 28px;
+    }
+
+    /*点击搜索按钮时*/
+    .van-search__action:active{
+        background-color: transparent;
     }
 
     /*搜索框文案*/
@@ -110,6 +147,46 @@ export default {
     /*搜索框icon*/
     ::v-deep .van-field__left-icon{
         display: none;
+    }
+
+    /*筛选弹出层按钮*/
+    .van-cell--clickable{
+        width: auto;
+        height: auto;
+        padding: 8px;
+        line-height: normal;
+        background: transparent;
+    }
+
+    /*筛选弹出层按钮清楚伪元素*/
+    .van-icon-arrow:before{
+        content: none;
+    }
+
+    /*筛选弹出层按钮清楚伪元素*/
+    .van-cell::after{
+        content: none;
+    }
+
+    /*筛选弹出层*/
+    .van-popup{
+        margin-top: 54px;
+        background: #454545;
+    }
+
+    /*筛选弹窗层-遮罩层*/
+    ::v-deep .van-overlay{
+        background-color: transparent
+    }
+
+    /*筛选弹窗层盒子*/
+    .filterBox{
+        margin: 40px 0 0 20px
+    }
+
+    /*筛选弹窗层-标题*/
+    .filter-title{
+        background: red;
     }
 }
 

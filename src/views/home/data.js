@@ -131,3 +131,21 @@ export const imageList = [
     },
 ]
 
+
+//筛选列表数据
+export const filterList = [
+    {
+        title:'全部',
+        children: [
+            {name: '内地综艺'},
+            {name: '港台综艺'},
+        ]
+    },
+    {
+        title:'全部',
+        children: [
+            {name: '内地'},
+            {name: '港台'},
+        ]
+    },
+]
