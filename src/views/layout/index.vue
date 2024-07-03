@@ -15,11 +15,12 @@
                 <van-cell is-link @click="showPopup">
                     <van-button round type="info" size="small" icon="filter-o" color="#454545" @click="onSearch(value)">筛选</van-button>
                 </van-cell>
-                <van-popup v-model="show" position="top" :style="{ height: '30%' }">
-                    <div class="filterBox">
-                        <div class="filter-title" v-for="item in filterList">{{item.title}}</div>
-                        <div>123</div>
-                    </div>
+                <van-popup v-model="show" position="top" :style="{ height: '32%' }">
+                    <van-tabs type="card" background="#454545" title-inactive-color="#8d8d8d" title-active-color="#ff2a14" v-for="item in filterList">
+                        <div v-for="children in item.children">
+                            <van-tab :title="children.title" swipeable></van-tab>
+                        </div>
+                    </van-tabs>
                 </van-popup>
             </div>
         </div>
@@ -49,6 +50,7 @@ export default {
             active: 0,
             show: false,
             filterList,
+            filterVal: ''
         }
     },
     created() {
@@ -64,15 +66,14 @@ export default {
                 break;
             default:
         }
-        console.log(this.filterList)
     },
     methods: {
         onSearch(val){
-            console.log(val)
+            // console.log(val)
         },
         showPopup() {
-      this.show = true;
-    },
+            this.show = true;
+        },
     },
 };
 </script>
@@ -180,13 +181,18 @@ export default {
     }
 
     /*筛选弹窗层盒子*/
-    .filterBox{
-        margin: 40px 0 0 20px
+    ::v-deep .van-tabs{
+        margin-top: 10px;
     }
-
-    /*筛选弹窗层-标题*/
-    .filter-title{
-        background: red;
+    ::v-deep .van-tabs__nav--card{
+        border: none;
+    }
+    ::v-deep .van-tabs__nav--card .van-tab{
+        border: none;
+    }
+    ::v-deep .van-tabs__nav--card .van-tab.van-tab--active{
+        background: #585858;
+        border-radius: 5px;
     }
 }
 
