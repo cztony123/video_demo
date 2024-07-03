@@ -66,6 +66,8 @@ export default {
                 break;
             default:
         }
+        console.log('123')
+        console.log(this.$route.path)
     },
     methods: {
         onSearch(val){
