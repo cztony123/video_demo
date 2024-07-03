@@ -44,15 +44,14 @@ const routes = [
                     title:"设置"
                 }
             },
+            {
+                path: "/details",
+                component: () => import('@/views/home/details.vue'),
+                meta:{
+                    title:"详情"
+                }
+            },
         ]
-    },
-    {
-        path: "/details",
-        name: 'details',
-        component: () => import('@/views/home/details.vue'),
-        meta:{
-            title:"详情"
-        }
     },
 ]
 

@@ -6,7 +6,7 @@
                     <img src="../../assets/image/logo.png" alt="">
                 </div>
                 <div class="searchBox">
-                    <van-search v-model="value" show-action shape="round" show-action-color='red' background="#2A2A2A" placeholder="请输入关键词" @click="onSearch(value)">
+                    <van-search v-model="value" show-action shape="round" show-action-color='red' background="transparent" placeholder="请输入关键词" @click="onSearch(value)">
                         <template #action>
                             <van-button round type="info" size="small" icon="search" color="#454545" @click="onSearch(value)">搜索</van-button>
                         </template>
@@ -66,8 +66,6 @@ export default {
                 break;
             default:
         }
-        console.log('123')
-        console.log(this.$route.path)
     },
     methods: {
         onSearch(val){
@@ -95,6 +93,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 100;
 }
 .header-page {
     display: flex;
