@@ -1,16 +1,36 @@
 <template>
     <div class="details-page" :style="{backgroundImage:`url(${bgStyle.backgroundImage})`}">
         <div class="details-content">
-            <img :src="bgStyle.backgroundImage" alt="">
+            <div class="detailsImg">
+                <img :src="bgStyle.backgroundImage" alt="">
+            </div>
             <div class="videoName">{{ videoName }}</div>
-            <van-button round icon="play">立即播放</van-button>
+            <van-button round icon="play" @click="onVideoPlay">立即播放</van-button>
+            <div class="story-style">
+                <div>
+                    <li>导演: </li> <span>Wayne David</span>
+                </div>
+                <div>
+                    <li>主演: </li> <span>道本成美/泉知束/米澤成美/南久松真奈/岩永ひひお</span>
+                </div>
+                <div>
+                    <li>年代: </li> <span>2024</span>
+                </div>
+                <div>
+                    <li>备注: </li> <span>HD</span>
+                </div>
+                <div>
+                    <li>剧情: </li> <span>侦探艾索·福里（艾迪·墨菲饰）回到了比佛利山庄。在女儿的生命受到威胁后，她（泰勒·佩姬饰）和福里与新搭档（约瑟夫·高登-莱维特饰）、老朋友比利·罗斯伍德（祖德·莱茵霍尔德饰）和约翰·塔格特（约翰·阿什...</span>
+                </div>
+                <div>
+                    <li></li ><span class="allStyle">[展开全部]</span>
+                </div>
+            </div>
         </div>
-        <div class="plot-style">
-123123
-        </div>
-        <!-- <div class="video-container" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd" >
+        
+        <div class="video-container" v-if="videoShow" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd" >
             <video-player class="video-player vjs-custom-skin" ref="videoPlayer" :options="playerOptions" @play="onPlay" @pause="onPause"></video-player>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -18,6 +38,7 @@
 export default {
     data() {
         return {
+            videoShow: false,
             videoName: '',
             bgStyle: {
                 color: 'red',
@@ -60,6 +81,11 @@ export default {
         console.log(this.$route.query)
     },
     methods: {
+        //点击播放按钮
+        onVideoPlay(){
+            this.videoShow = true
+            this.playerOptions.autoplay = true
+        },
         //触摸事件
         onTouchStart(event) {
             if (event.touches.length == 1) {
@@ -128,15 +154,17 @@ export default {
 .details-content{
     position: absolute;
     width: 100%;
-    top: 15%;
+    top: 12%;
     left: 50%;
     transform: translateX(-50%);
-    img{
-        width: 50%;
+    .detailsImg{
         display: flex;
         justify-content: center; /* 水平居中 */
-        border: 2px solid #ffffff;
-        border-radius: 10px;
+        img{
+            width: 50%;
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+        }
     }
     .videoName{
         margin-top: 15px;
@@ -155,17 +183,30 @@ export default {
         color: #FFF;
         border: none;
     }
-}
 
-/*剧情样式*/
-.plot-style{
-    position: absolute;
-    width: 50%;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 1px solid red;
-    height: 200px;
+    /*剧情样式*/
+    .story-style{
+        margin-top: 50px;
+        height: 200px;
+        div{
+            display: flex;
+            margin-top: 8px;
+            padding: 0 15px;
+            font-size: 14px;
+            color: #505050;
+            li{
+                list-style: none;
+                width: 45px;
+            }
+            span{
+                width: 90%;
+                margin-left: 10px;
+            }
+            .allStyle{
+                color: red;
+            }
+        }
+    }
 }
 
 
