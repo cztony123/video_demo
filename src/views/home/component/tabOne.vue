@@ -3,7 +3,7 @@
         <!-- 轮播图 -->
         <van-swipe class="my-swipe" :autoplay="3000">
             <van-swipe-item v-for="(image, index) in images" :key="index">
-                <img  width="100% " height="100%" :src="image"/>
+                <img width="100% " height="100%" :src="image" />
             </van-swipe-item>
         </van-swipe>
 
@@ -11,18 +11,18 @@
         <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
             <div>
                 <div class="video-title">
+                    <span> <van-icon name="fire-o" />热门影片 </span>
                     <span>
-                        <van-icon name="fire-o"/>热门影片
-                    </span>
-                    <span>
-                        <span>
-                            更多<van-icon name="arrow"/>
-                        </span>
+                        <span> 更多<van-icon name="arrow" /> </span>
                         <span class="row-num" @click="isShow()">
-                            <van-icon name="qr"/>
+                            <van-icon name="qr" />
                         </span>
                         <div v-if="isOpen" class="dropdown-content">
-                            <div v-for="(item, index) in optionList" :key="index + 'item.text'" @click="selectOption(item)">
+                            <div
+                                v-for="(item, index) in optionList"
+                                :key="index + 'item.text'"
+                                @click="selectOption(item)"
+                            >
                                 {{ item.text }}
                             </div>
                         </div>
@@ -30,18 +30,22 @@
                 </div>
                 <div class="grid-list">
                     <van-grid :column-num="rowNum">
-                        <van-grid-item v-for="item in imageList" @click="onPlay(item)">
+                        <van-grid-item
+                            v-for="item in imageList"
+                            @click="onPlay(item)"
+                        >
                             <img :src="item.url" v-lazy="item.url" />
-                            <div class="video-name">{{item.videoName}}</div> 
+                            <div class="video-name">{{ item.videoName }}</div>
                         </van-grid-item>
-                    </van-grid> 
+                    </van-grid>
                 </div>
             </div>
         </van-pull-refresh>
     </div>
 </template>
 <script>
-import { imageList, images, optionList } from '../data';
+import testApi from "../../../api/login/index";
+import { imageList, images, optionList } from "../data";
 export default {
     data() {
         return {
@@ -53,6 +57,10 @@ export default {
             optionList, //列数下拉数据
         };
     },
+    created() {
+        console.log('123')
+        this.fetchData()
+    },
     methods: {
         //下拉刷新
         onRefresh() {
@@ -62,19 +70,30 @@ export default {
         },
 
         //点击下拉图标
-        isShow(){
-            this.isOpen =true
+        isShow() {
+            this.isOpen = true;
         },
 
         //点击下拉选项
         selectOption(item) {
-            this.rowNum = item.value
+            this.rowNum = item.value;
             this.isOpen = false;
         },
 
+        //列表接口
+        fetchData() {
+            // testApi().then(res => {
+            //     console.log(res);
+            // })
+            testApi.getList().then((resp) => {
+                console.log(resp.data);
+                this.list = resp.data;
+            });
+        },
+
         //点击播放跳转详情页
-        onPlay(item){
-            this.$router.push({ path: '/details', query: { item: item } })
+        onPlay(item) {
+            this.$router.push({ path: "/details", query: { item: item } });
         },
     },
 };
@@ -92,47 +111,46 @@ export default {
 }
 
 /*页面高度设定*/
-.one-page{
+.one-page {
     height: calc(100vh - 158px);
     overflow-y: auto;
-    img{
+    img {
         width: 100%;
     }
 }
 
-
 /*视频标题*/
-.video-title{
+.video-title {
     position: relative;
-    display:flex;
-    justify-content: space-between; 
+    display: flex;
+    justify-content: space-between;
     padding: 10px 10px;
     font-size: 14px;
-    .van-icon-fire-o{
+    .van-icon-fire-o {
         color: red;
         font-weight: 800;
         padding-right: 6px;
     }
-    .row-num{
+    .row-num {
         padding-left: 8px;
     }
 }
 
 /*视频列表*/
-.grid-list{
+.grid-list {
     background: #000;
-    .video-name{
+    .video-name {
         margin-top: 10px;
         width: 100%;
         color: #000;
         text-align: center;
     }
-    .van-grid{
-        padding:5px 5px
+    .van-grid {
+        padding: 5px 5px;
     }
-    .van-grid-item{
-        padding:5px 5px;
-        img{
+    .van-grid-item {
+        padding: 5px 5px;
+        img {
             height: 225px;
         }
     }
@@ -148,7 +166,7 @@ export default {
     background-color: #000;
     border: 1px solid #ddd;
     z-index: 10;
-    div{
+    div {
         margin-top: 15px;
         text-align: center;
     }
