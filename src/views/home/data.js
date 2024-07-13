@@ -30,7 +30,7 @@ export const imageList = [
         videoName: '金手指 国语版'
     },
     {
-        url:'https://pic.wujinpp.com/upload/vod/20210724-1/f117fa296d37e30c3aae288debee1159.jpg',
+        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
         videoName: '死神来了'
     },
     {
@@ -46,7 +46,7 @@ export const imageList = [
         videoName: '金手指 国语版'
     },
     {
-        url:'https://pic.wujinpp.com/upload/vod/20210724-1/f117fa296d37e30c3aae288debee1159.jpg',
+        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
         videoName: '死神来了'
     },
     {
@@ -62,7 +62,7 @@ export const imageList = [
         videoName: '金手指 国语版'
     },
     {
-        url:'https://pic.wujinpp.com/upload/vod/20210724-1/f117fa296d37e30c3aae288debee1159.jpg',
+        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
         videoName: '死神来了'
     },
     {
@@ -78,7 +78,7 @@ export const imageList = [
         videoName: '金手指 国语版'
     },
     {
-        url:'https://pic.wujinpp.com/upload/vod/20210724-1/f117fa296d37e30c3aae288debee1159.jpg',
+        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
         videoName: '死神来了'
     },
     {
@@ -94,7 +94,7 @@ export const imageList = [
         videoName: '金手指 国语版'
     },
     {
-        url:'https://pic.wujinpp.com/upload/vod/20210724-1/f117fa296d37e30c3aae288debee1159.jpg',
+        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
         videoName: '死神来了'
     },
     {
@@ -110,7 +110,7 @@ export const imageList = [
         videoName: '金手指 国语版'
     },
     {
-        url:'https://pic.wujinpp.com/upload/vod/20210724-1/f117fa296d37e30c3aae288debee1159.jpg',
+        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
         videoName: '死神来了'
     },
     {
@@ -126,7 +126,7 @@ export const imageList = [
         videoName: '金手指 国语版'
     },
     {
-        url:'https://pic.wujinpp.com/upload/vod/20210724-1/f117fa296d37e30c3aae288debee1159.jpg',
+        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
         videoName: '死神来了'
     },
 ]

@@ -1,9 +1,8 @@
 import request from '../../utils/axios'
 
-
-export function getLogin(query) {
+export function getList(query) {
     return request({
-        url: '/api/login',
+        url: `/api/home/${query}/list/1`,
         method: 'get',
         params: query
     });

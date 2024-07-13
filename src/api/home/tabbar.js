@@ -1,9 +1,8 @@
 import request from '../../utils/axios'
 
-
-export function getLogin(query) {
+export function getTabbarList(query) {
     return request({
-        url: '/api/login',
+        url: '/api/babbar/list',
         method: 'get',
         params: query
     });

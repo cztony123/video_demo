@@ -18,11 +18,7 @@
                             <van-icon name="qr" />
                         </span>
                         <div v-if="isOpen" class="dropdown-content">
-                            <div
-                                v-for="(item, index) in optionList"
-                                :key="index + 'item.text'"
-                                @click="selectOption(item)"
-                            >
+                            <div v-for="(item, index) in optionList" :key="index + 'item.text'"  @click="selectOption(item)" >
                                 {{ item.text }}
                             </div>
                         </div>
@@ -30,10 +26,7 @@
                 </div>
                 <div class="grid-list">
                     <van-grid :column-num="rowNum">
-                        <van-grid-item
-                            v-for="item in imageList"
-                            @click="onPlay(item)"
-                        >
+                        <van-grid-item  v-for="item in imageList" @click="onPlay(item)">
                             <img :src="item.url" v-lazy="item.url" />
                             <div class="video-name">{{ item.videoName }}</div>
                         </van-grid-item>
@@ -44,9 +37,15 @@
     </div>
 </template>
 <script>
-import { getList } from "../../../api/login/index";
-import { imageList, images, optionList } from "../data";
+import { getList } from "@/api/home/list";
+import { imageList, images, optionList } from "./data";
 export default {
+    props: {
+        active:{
+            type: Number,
+        }
+    },
+    
     data() {
         return {
             isLoading: false, //下拉刷新遮罩层
@@ -55,17 +54,20 @@ export default {
             isOpen: false, //列数下拉初始隐藏
             rowNum: 2, //列数初始值
             optionList, //列数下拉数据
+            tabIndex: 0, //当前点击的tab索引
         };
     },
     created() {
-        console.log('123')
-        this.fetchData()
+        this.tabIndex = this.active
+        
+        this.fetchData();
     },
     methods: {
         //下拉刷新
         onRefresh() {
             setTimeout(() => {
                 this.isLoading = false;
+                this.fetchData();
             }, 1000);
         },
 
@@ -82,12 +84,9 @@ export default {
 
         //列表接口
         fetchData() {
-            // testApi().then(res => {
-            //     console.log(res);
-            // })
-            getList().then((resp) => {
-                console.log(resp.data, 89898);
-                this.list = resp.data;
+            console.log(this.tabIndex, '123')
+            getList(this.tabIndex).then((res) => {
+                console.log(res);
             });
         },
 
