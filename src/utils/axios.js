@@ -18,7 +18,7 @@ function(error){
 
 //响应拦截器
 axios.interceptors.response.use(function(response){
-    return response;
+    return response.data;
 },
 function(error){
     return Promise.reject(error)

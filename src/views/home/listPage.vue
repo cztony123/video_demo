@@ -38,6 +38,7 @@
 </template>
 <script>
 import { getList } from "@/api/home/list";
+import { getSwipeList } from "@/api/home/swipe";
 import { imageList, images, optionList } from "./data";
 export default {
     props: {
@@ -59,10 +60,17 @@ export default {
     },
     created() {
         this.tabIndex = this.active
-        
+        this.getSwipeDataList()
         this.fetchData();
     },
     methods: {
+        //请求轮播图
+        getSwipeDataList() {
+            getSwipeList().then((res) => {
+                console.log(res);
+            });
+        },
+        
         //下拉刷新
         onRefresh() {
             setTimeout(() => {
@@ -84,7 +92,6 @@ export default {
 
         //列表接口
         fetchData() {
-            console.log(this.tabIndex, '123')
             getList(this.tabIndex).then((res) => {
                 console.log(res);
             });
