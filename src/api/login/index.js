@@ -1,17 +1,10 @@
 import request from '../../utils/axios'
 
-export function getList(){
+
+export function getList(query) {
     return request({
-        method:'get',
-        url:'data.json'
-    })
+        url: 'data.json',
+        method: 'get',
+        params: query
+    });
 }
-
-
-// export function getList(query) {
-//     return request({
-//         url: 'data.json',
-//         method: 'get',
-//         params: query
-//     });
-// }

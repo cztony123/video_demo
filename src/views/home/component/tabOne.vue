@@ -44,7 +44,7 @@
     </div>
 </template>
 <script>
-import testApi from "../../../api/login/index";
+import { getList } from "../../../api/login/index";
 import { imageList, images, optionList } from "../data";
 export default {
     data() {
@@ -85,8 +85,8 @@ export default {
             // testApi().then(res => {
             //     console.log(res);
             // })
-            testApi.getList().then((resp) => {
-                console.log(resp.data);
+            getList().then((resp) => {
+                console.log(resp.data, 89898);
                 this.list = resp.data;
             });
         },
