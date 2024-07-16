@@ -7,7 +7,7 @@
             </div>
             <div class="login-inner">
                 <div class="login-input">
-                    <van-field v-model="form.username" input-align="center" placeholder="请输入用户名" />
+                    <van-field v-model="form.userName" input-align="center" placeholder="请输入用户名" />
                 </div>
                 <div class="login-input login-password">
                     <van-field v-model="form.password" :type="isShow ? 'password' : 'text'" input-align="center" placeholder="请输入密码"/>
@@ -29,23 +29,34 @@
     
 
 <script>
+import { loginApi } from "@/api/login/index";
 export default {
     data() {
         return {
             isShow: true,
             form: {
-                username: 'admin',
+                userName: 'admin',
                 password: '123456',
             },
         }
     },
     methods: {
-        checkForm(){
-            this.$router.push('/home')
-        },
+        //隐密
         showPassword(){
             this.isShow = !this.isShow
-        }
+        },
+
+        //登录按钮
+        checkForm(){
+            let params = {
+                ...this.form
+            }
+            console.log(params, '123123123123')
+            loginApi(params).then((res) => {
+                console.log(res)
+            });
+            this.$router.push('/home')
+        },
     },
 }
 </script>

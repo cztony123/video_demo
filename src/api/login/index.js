@@ -1,10 +1,10 @@
 import request from '../../utils/axios'
 
 
-export function getLogin(query) {
+export function loginApi(data) {
     return request({
-        url: '/api/login',
-        method: 'get',
-        params: query
+        url: '/users/api/login',
+        method: 'post',
+        data: data
     });
 }
