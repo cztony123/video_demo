@@ -66,9 +66,9 @@ export default {
     methods: {
         //请求轮播图
         getSwipeDataList() {
-            getSwipeList().then((res) => {
-                console.log(res);
-            });
+            // getSwipeList().then((res) => {
+            //     console.log(res);
+            // });
         },
         
         //下拉刷新
@@ -92,9 +92,9 @@ export default {
 
         //列表接口
         fetchData() {
-            getList(this.tabIndex).then((res) => {
-                console.log(res);
-            });
+            // getList(this.tabIndex).then((res) => {
+            //     console.log(res);
+            // });
         },
 
         //点击播放跳转详情页

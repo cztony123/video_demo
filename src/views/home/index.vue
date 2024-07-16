@@ -27,9 +27,9 @@ export default {
     methods: {
         //请求tab数据
         getDataList() {
-            getTabbarList().then((res) => {
-                this.topBar = res.data.topBar
-            });
+            // getTabbarList().then((res) => {
+            //     this.topBar = res.data.topBar
+            // });
         },
     }
 }

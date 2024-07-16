@@ -2,7 +2,7 @@
     <div class="login-page">
         <div class="login-box">
             <div class="login-logo">
-                <div>logo</div>
+                <div><img src="@/assets/logo.png" alt=""></div>
                 <h1>欢迎登录</h1>
             </div>
             <div class="login-inner">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="login-btn">
-                <van-button round type="primary" @click="checkForm">登录</van-button>
+                <van-button round type="primary" @click="onLogin">登录</van-button>
             </div>
             <div class="login-register">
                 <span>密码</span> | <span>注册</span>
@@ -30,6 +30,8 @@
 
 <script>
 import { loginApi } from "@/api/login/index";
+import { Toast } from 'vant';
+import {mapMutations} from 'vuex'
 export default {
     data() {
         return {
@@ -41,21 +43,44 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['login']),
         //隐密
         showPassword(){
             this.isShow = !this.isShow
         },
 
         //登录按钮
-        checkForm(){
-            let params = {
-                ...this.form
+        onLogin(){
+            let data = {
+                success: true,
+                tel: '180055225223',
+                userName: '李四',
+                imgUrl: '1111111',
+                sex: '男',
+                token: null
             }
-            console.log(params, '123123123123')
-            loginApi(params).then((res) => {
-                console.log(res)
-            });
+            //保存用户信息
+            this.login(data)
+
             this.$router.push('/home')
+
+            // let params = {
+            //     ...this.form
+            // }
+            //保存用户信息
+            //     this.login(res.data)
+            // loginApi(params).then((res) => {
+            //     console.log(res, '55555')
+            //     //保存用户信息
+            //     this.login(res.data)
+
+            //     if(res.code == 200){
+            //         Toast(res.message);
+            //         this.$router.push('/home')
+            //     }else{
+            //         Toast(res.message);
+            //     }
+            // });
         },
     },
 }
@@ -80,7 +105,14 @@ export default {
 
 .login-logo{
     text-align: center;
-    color:#fff
+    color:#fff;
+    div{
+        width: 25%;
+        margin: 0 auto;
+        img{
+            width: 100%;
+        }
+    }
 }
 
 /*输入框*/
@@ -132,36 +164,4 @@ export default {
         margin: 0 15px
     }
 }
-
-
-
-
-
-/*@media screen and (max-width: 1260px) {
-  .login-content-left {
-    display: none;
-  }
-  .box {
-    width: 500px !important;
-  }
-}
-
-@media screen and (max-width: 750px) {
-  .container .box, .container .box-inner {
-    width: 100vw !important;
-    height: 100vh;
-    box-shadow: none;
-    left: 0;
-    top: 0;
-    transform: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h1 {
-      margin-top: 0;
-    }
-  }
-}*/
 </style>

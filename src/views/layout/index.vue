@@ -3,7 +3,7 @@
         <div class="header">
             <div class="header-page">
                 <div class="logo">
-                    <img src="../../assets/image/logo.png" alt="">
+                    <img src="../../assets/logo.png" alt="">
                 </div>
                 <div class="searchBox">
                     <van-search v-model="value" show-action shape="round" show-action-color='red' background="transparent" placeholder="请输入关键词" @click="onSearch(value)">
