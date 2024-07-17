@@ -88,7 +88,7 @@
     
 
 <script>
-import { loginApi } from "@/api/login/index";
+import { loginApi, addUser } from "@/api/login/index";
 import MyRules from './rules'
 import { Toast } from 'vant';
 import {mapMutations} from 'vuex'
@@ -99,11 +99,11 @@ export default {
             loginShow: true, //判断登录 还是注册
             codeShow: true, //判断密码登录 还是验证码登录
             form: {
-                userName: 'admin', //用户名
+                userName: 'test001', //用户名
                 tel: '18888888888', //手机号
-                code: '123', //验证码
-                password: '', //密码
-                confirmPwd: '', //缺人密码
+                code: '', //验证码
+                password: '123456', //密码
+                confirmPwd: '123456', //缺人密码
             },
             disabled: false,
             codeNumber: 3, //验证码倒计时
@@ -147,42 +147,56 @@ export default {
             if(this.loginShow){
                 //判断密码登录还是手机号登录
                 if(this.codeShow){
+                    //用户名登录校验 (调用封装)
                     const rulesTxt = MyRules.nameLoginRules(this.form)
                     if(rulesTxt){
                         Toast(MyRules.nameLoginRules(this.form));
                         return
                     }
                 }else{
-                    const rulesTxt = MyRules.nameLoginRules(this.form)
+                    //手机号登录校验 (调用封装)
+                    const rulesTxt = MyRules.telLoginRules(this.form)
                     if(rulesTxt){
                         Toast(MyRules.telLoginRules(this.form));
                         return
                     }
                 }
-                console.log('登录')
-                // let params = {
-                //     ...this.form
-                // }
-                // loginApi(params).then((res) => {
-                //     this.login(res.data) //vuex 存储用户信息
-                //     localStorage.setItem('userInfo', JSON.stringify(res.data)); //本地 存储用户信息
 
-                //     if(res.code == 200){
-                //         Toast(res.message);
-                //         this.$router.push('/home')
-                //     }else{
-                //         Toast(res.message);
-                //     }
-                // })
+                let params = {
+                    ...this.form
+                }
+                loginApi(params).then((res) => {
+                    console.log(res)
+                    this.login(res.data) //vuex 存储用户信息
+                    localStorage.setItem('userInfo', JSON.stringify(res.data)); //本地 存储用户信息
+
+                    if(res.code == 200){
+                        Toast(res.message);
+                        this.$router.push('/home')
+                    }else{
+                        Toast(res.message);
+                    }
+                })
             }else{
-                const rulesTxt = MyRules.nameLoginRules(this.form)
-                console.log(rulesTxt)
+                //注册校验 (调用封装)
+                const rulesTxt = MyRules.enrolLoginRules(this.form)
                 if(rulesTxt){
                     Toast(MyRules.enrolLoginRules(this.form));
                     return
                 }
-                
-                console.log('注册')
+
+                let params = {
+                    ...this.form
+                }
+                console.log(params)
+                addUser(params).then((res) => {
+                    if(res.code == 200){
+                        Toast(res.message);
+                        this.loginShow = true
+                    }else{
+                        Toast(res.message);
+                    }
+                })
             }
         },
 

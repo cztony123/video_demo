@@ -70,9 +70,9 @@ const MyRules = {
         }
 
         //校验验证码
-        if(!form.code){
-            return "请输入验证码"
-        }
+        // if(!form.code){
+        //     return "请输入验证码"
+        // }
 
         //校验密码
         if(!form.password){
@@ -86,8 +86,6 @@ const MyRules = {
         }
 
         //校验确认密码
-        console.log(form.password)
-        console.log(form.confirmPwd)
         if(form.password != form.confirmPwd){
             return "两次密码不一致"
         }
