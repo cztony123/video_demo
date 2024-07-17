@@ -9,9 +9,13 @@
 
             <!-- 登录板块 -->
             <div v-if="loginShow" class="login-inner">
-                <!-- 密码登录 -->
-                <div class="login-input">
+                <!-- 用户名 -->
+                <div v-if="codeShow" class="login-input">
                     <van-field v-model="form.userName" input-align="center" placeholder="请输入用户名" />
+                </div>
+                <!-- 手机号 -->
+                <div v-else class="login-input">
+                    <van-field v-model="form.tel" input-align="center" placeholder="请输入手机号" />
                 </div>
 
                 <!-- 密码登录 -->
@@ -25,10 +29,8 @@
 
                 <!-- 验证码登录 -->
                 <div v-else class="login-input login-code">
-                    <van-field v-model="form.password" type="text" input-align="center" placeholder="请输入密码"/>
-                    <span @click="sendCode">
-                        发送验证码
-                    </span>
+                    <van-field v-model="form.code" type="text" input-align="center" placeholder="请输入验证码"/>
+                    <van-button :disabled="disabled" @click="sendCode">{{codeTxt}}</van-button>
                 </div>
             </div>
 
@@ -44,12 +46,10 @@
                     <van-field v-model="form.tel" input-align="center" placeholder="请输入手机号" />
                 </div>
 
-                <!-- 验证码登录 -->
+                <!-- 验证码 -->
                 <div class="login-input login-code">
-                    <van-field v-model="form.password" type="text" input-align="center" placeholder="请输入密码"/>
-                    <span @click="sendCode">
-                        发送验证码
-                    </span>
+                    <van-field v-model="form.code" type="text" input-align="center" placeholder="请输入密码"/>
+                    <van-button :disabled="disabled" @click="sendCode">{{codeTxt}}</van-button>
                 </div>
 
                 <!-- 密码 -->
@@ -63,7 +63,7 @@
 
                 <!-- 确认密码 -->
                 <div class="login-input login-password">
-                    <van-field v-model="form.password" :type="isShow ? 'password' : 'text'" input-align="center" placeholder="请输入密码"/>
+                    <van-field v-model="form.confirmPwd" :type="isShow ? 'password' : 'text'" input-align="center" placeholder="请确认密码"/>
                     <span @click="showPassword">
                         <van-icon v-if="!isShow" name="closed-eye" color="#a5a5a5" />
                         <van-icon v-if="isShow" name="eye-o" color="#a5a5a5" />
@@ -74,13 +74,13 @@
 
             <!-- 登录按钮 -->
             <div class="login-btn">
-                <van-button round type="primary" @click="onLogin">登录</van-button>
+                <van-button round type="primary" @click="onLogin">{{loginShow ? "登录" : "注册"}}</van-button>
             </div>
 
             <div class="login-register">
                 <span @click="pwdLogin">{{codeShow ? "验证码登录" : "密码登录"}}</span>
                  |
-                <span @click="enrol">用户注册</span>
+                <span @click="enrol">{{loginShow ? "用户注册" : "用户登录"}}</span>
             </div>
         </div>
     </div>
@@ -89,20 +89,25 @@
 
 <script>
 import { loginApi } from "@/api/login/index";
+import MyRules from './rules'
 import { Toast } from 'vant';
 import {mapMutations} from 'vuex'
 export default {
     data() {
         return {
             isShow: true, //判断是否隐秘
-            codeShow: true, //判断密码登录 还是验证码登录
             loginShow: true, //判断登录 还是注册
+            codeShow: true, //判断密码登录 还是验证码登录
             form: {
-                tel: '18642685162', //手机号
-                userName: '', //用户名
+                userName: 'admin', //用户名
+                tel: '18888888888', //手机号
+                code: '123', //验证码
                 password: '', //密码
+                confirmPwd: '', //缺人密码
             },
-            codeNumber: 60
+            disabled: false,
+            codeNumber: 3, //验证码倒计时
+            codeTxt: '发送验证码',
         }
     },
     methods: {
@@ -115,36 +120,70 @@ export default {
 
         //发送验证码按钮
         sendCode(){
-            const regex = /^1[3-9]\d{9}$/; //以1开头，第二位是3-9，接下来是9位数字
+            const regex = /^1[3-9]\d{9}$/;
+            this.disabled = true //倒计时开始禁用按钮
             if(regex.test(this.form.tel)){
+                //启动60秒定时器
                 let timer = setInterval(()=>{
-                    this.codeNumber --
-                    console.log(this.codeNumber)
+                    this.codeTxt = this.codeNumber + ' 秒' //按钮文字
+                    -- this.codeNumber //倒计时
+                    
+                    //倒计时结束停止定时器
+                    if( this.codeNumber < 0){
+                        clearInterval(timer) //停止定时器
+                        this.codeTxt ='重新发送' //更换按钮文字
+                        this.disabled = false //倒计时结束开启按钮
+                        this.codeNumber = 3 //回复倒计时秒数
+                    }
                 },1000)
             }else{
                 Toast('手机号不正确');
             }
         },
 
-        //登录按钮
+        //登录 或 注册按钮
         onLogin(){
-            if(!this.form.userName || !this.form.password){
-                return
-            }
-            let params = {
-                ...this.form
-            }
-            loginApi(params).then((res) => {
-                this.login(res.data) //vuex 存储用户信息
-                localStorage.setItem('userInfo', JSON.stringify(res.data)); //本地 存储用户信息
-
-                if(res.code == 200){
-                    Toast(res.message);
-                    this.$router.push('/home')
+            //判断登录还是注册
+            if(this.loginShow){
+                //判断密码登录还是手机号登录
+                if(this.codeShow){
+                    const rulesTxt = MyRules.nameLoginRules(this.form)
+                    if(rulesTxt){
+                        Toast(MyRules.nameLoginRules(this.form));
+                        return
+                    }
                 }else{
-                    Toast(res.message);
+                    const rulesTxt = MyRules.nameLoginRules(this.form)
+                    if(rulesTxt){
+                        Toast(MyRules.telLoginRules(this.form));
+                        return
+                    }
                 }
-            });
+                console.log('登录')
+                // let params = {
+                //     ...this.form
+                // }
+                // loginApi(params).then((res) => {
+                //     this.login(res.data) //vuex 存储用户信息
+                //     localStorage.setItem('userInfo', JSON.stringify(res.data)); //本地 存储用户信息
+
+                //     if(res.code == 200){
+                //         Toast(res.message);
+                //         this.$router.push('/home')
+                //     }else{
+                //         Toast(res.message);
+                //     }
+                // })
+            }else{
+                const rulesTxt = MyRules.nameLoginRules(this.form)
+                console.log(rulesTxt)
+                if(rulesTxt){
+                    Toast(MyRules.enrolLoginRules(this.form));
+                    return
+                }
+                
+                console.log('注册')
+            }
         },
 
         //密码登录
@@ -204,7 +243,7 @@ export default {
         /*输入框内字体颜色*/
         ::v-deep .van-field__control{
             height: 30px;
-            color: #a5a5a5;
+            color: #c2c2c2;
             font-size: 16px;
         }
     }
@@ -214,12 +253,14 @@ export default {
 .login-code{
     position: relative;
     margin-bottom: 20px;
-    span{
+    .van-button{
         position: absolute;
         top: 50%;
         right: 15px;
         transform: translateY(-50%);
-        color: #a5a5a5
+        background: none;
+        border: none;
+        color: #d3d3d3
     }
     .van-field{
         background: none;
