@@ -5,18 +5,19 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/',
+        path: '/login',
         name: 'Login',
         component: () => import('../views/login/index.vue')
     },
     {
-        path: '/layout',
+        path: '/',
         name: 'Layout',
+        redirect: "/home",
         component: () => import('../views/layout/index.vue'),
         children: [
             {
-                reactive: '/home',
                 path: "/home",
+                name: 'home',
                 component: () => import('@/views/home/index.vue'),
                 meta:{
                     title:"首页"

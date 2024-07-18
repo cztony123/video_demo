@@ -2,7 +2,7 @@ import request from '../../utils/axios'
 
 export function getTabbarList(query) {
     return request({
-        url: '/api/babbar/list',
+        url: '/api/tabbar/list',
         method: 'get',
         params: query
     });

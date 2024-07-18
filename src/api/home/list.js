@@ -7,3 +7,11 @@ export function getList(query) {
         params: query
     });
 }
+
+export function getCollect(query) {
+    return request({
+        url: '/collect/api/collect',
+        method: 'get',
+        params: query
+    });
+}
