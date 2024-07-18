@@ -1,6 +1,6 @@
 <template>
     <div class="indexBox">
-        <div class="header">
+        <div class="header" v-if="$route.path == '/home'">
             <div class="header-page">
                 <div class="logo">
                     <img src="../../assets/logo.png" alt="">
@@ -8,15 +8,15 @@
                 <div class="searchBox">
                     <van-search v-model="value" show-action shape="round" show-action-color='red' background="transparent" placeholder="请输入关键词" @click="onSearch(value)">
                         <template #action>
-                            <van-button round type="info" size="small" icon="search" color="#454545" @click="onSearch(value)">搜索</van-button>
+                            <van-button round type="info" size="small" icon="search" color="#222222" @click="onSearch(value)">搜索</van-button>
                         </template>
                     </van-search>
                 </div>
                 <van-cell is-link @click="showPopup">
-                    <van-button round type="info" size="small" icon="filter-o" color="#454545" @click="onSearch(value)">筛选</van-button>
+                    <van-button round type="info" size="small" icon="filter-o" color="#222222" @click="onSearch(value)">筛选</van-button>
                 </van-cell>
-                <van-popup v-model="show" position="top" :style="{ height: '32%' }">
-                    <van-tabs type="card" background="#454545" title-inactive-color="#8d8d8d" title-active-color="#ff2a14" v-for="item in filterList">
+                <van-popup v-model="show" position="top" :style="{ height: '35%' }">
+                    <van-tabs type="card" background="#222222" title-inactive-color="#8d8d8d" title-active-color="#ff2a14" v-for="item in filterList">
                         <div v-for="children in item.children">
                             <van-tab :title="children.title" swipeable></van-tab>
                         </div>
@@ -33,8 +33,8 @@
                 <van-tabbar class="bottom_menu" v-model="active" active-color="#3899FB" inactive-color="#FFF">
                     <van-tabbar-item icon="home-o" to="/home" >首页</van-tabbar-item>
                     <van-tabbar-item icon="search" to="/search">查询</van-tabbar-item>
-                    <van-tabbar-item icon="friends-o" to="/user">用户</van-tabbar-item>
                     <van-tabbar-item icon="setting-o" to="/setting">设置</van-tabbar-item>
+                    <van-tabbar-item icon="friends-o" to="/user">用户</van-tabbar-item>
                 </van-tabbar>
             </div>
         </main>
@@ -58,19 +58,22 @@ export default {
             case '/search':
                 this.active = 1;
                 break;
-            case '/user':
+            case '/setting':
                 this.active = 2;
                 break;
-            case '/setting':
+            case '/user':
                 this.active = 3;
                 break;
             default:
         }
     },
     methods: {
+        //搜索按钮
         onSearch(val){
             // console.log(val)
         },
+
+        //筛选按钮
         showPopup() {
             this.show = true;
         },
@@ -101,13 +104,14 @@ export default {
     justify-content: center;
     height: 54px;
     .logo{
+        margin-left: 10px;
         width: 35px;
         img{
             width: 100%;
         }
     }
     .searchBox{
-        width: 70%;
+        width: 65%;
     }
     .van-search__action{
         display: flex;
@@ -119,7 +123,7 @@ export default {
 
     /*搜索框*/
     .van-search__content{
-        background-color: #454545;
+        background-color: #222222;
         height: 28px;
     }
     
@@ -173,7 +177,7 @@ export default {
     /*筛选弹出层*/
     .van-popup{
         margin-top: 54px;
-        background: #454545;
+        background: #222222;
     }
 
     /*筛选弹窗层-遮罩层*/
@@ -192,31 +196,18 @@ export default {
         border: none;
     }
     ::v-deep .van-tabs__nav--card .van-tab.van-tab--active{
-        background: #585858;
+        background: #333333;
         border-radius: 5px;
     }
 }
 
-
-/*主体*/
-.main{
-    margin-top: 54px;
-    height: calc(100vh - 114px);
-}
-.main-page {
-    color: #fff;
-    height: calc(100vh - 114px);
-    overflow-y: auto;
-}
-
-
 /*底部菜单*/
 .van-tabbar {
-    background-color: #333333;
+    background-color: #222222;
     border: none;
     height: 60px;
 }
 .van-tabbar-item{
-    background-color: #333333;
+    background-color: #222222;
 }
 </style>

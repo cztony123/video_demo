@@ -3,7 +3,7 @@ html, body, #app{
     height: 100%;
     padding: 0;
     margin: 0;
-    background: #2A2A2A;
+    background: #000000;
 }
 
 ::-webkit-scrollbar {display:none}

@@ -31,19 +31,18 @@ const routes = [
                 }
             },
             {
-                path: "/user",
-                component: () => import('@/views/user/index.vue'),
-                meta:{
-                    title:"用户"
-                }
-            },
-            
-            {
                 path: "/setting",
                 component: () => import('@/views/setting/index.vue'),
                 meta:{
                     title:"设置"
                 }
+            },
+            {
+                path: "/user",
+                component: () => import('@/views/user/index.vue'),
+                meta:{
+                    title:"用户"
+                },
             },
             {
                 path: "/details",
@@ -52,6 +51,13 @@ const routes = [
                     title:"详情"
                 }
             },
+            {
+                path: "/editUser",
+                component: () => import('@/views/user/editUser.vue'),
+                meta:{
+                    title:"编辑资料"
+                }
+            }, 
         ]
     },
 ]

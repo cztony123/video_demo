@@ -1,8 +1,9 @@
 import request from '../../utils/axios'
 
-export function getTabbarList(query) {
+//更改头像
+export function getCollect(query) {
     return request({
-        url: '/api/tabbar/list',
+        url: '/users/api/collect',
         method: 'get',
         params: query
     });
