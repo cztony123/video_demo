@@ -1,12 +1,15 @@
 <template>
     <div class="deit-page">
         <div class="back">
-            <span @click="goBack"><van-icon name="arrow-left" /></span>
+            <span @click="goBack">
+                <van-icon name="arrow-left" />
+            </span>
             <span>编辑资料</span>
         </div>
 
         <div class="deit-avatar">
-            <img src="../../assets/logo.png" alt="">
+            <img v-if="form.imgUrl" :src="form.imgUrl" alt="">
+            <img v-else src="../../assets/logo.png" alt="">
             <div>点击更换头像</div>
         </div>
             
@@ -14,27 +17,33 @@
             <!-- 用户名 -->
             <div class="name-input">
                 <span>用户名</span>
-                <van-field v-model="form.userName" type="text" input-align="center" placeholder="请输入用户名" />
+                <van-field v-model="form.userName"/>
             </div>
 
             <!-- 手机号 -->
             <div class="tel-input">
-                <van-field v-model="form.tel" type="text" input-align="center" placeholder="请输入手机号" />
+                <span>手机号</span>
+                <van-field v-model="form.tel"/>
             </div>
 
             <!-- 密码登录 -->
             <div class="pwd-input">
-                <van-field v-model="form.password" type="text" input-align="center" placeholder="请输入密码"/>
+                <span>密码</span>
+                <van-field v-model="form.password"/>
             </div>
 
             <!-- 性别 -->
-            <div class="login-input login-password">
-                <van-field v-model="form.sex" type="text" input-align="center" placeholder="请输入密码"/>
+            <div class="login-input">
+                <span>性别</span>
+                <van-dropdown-menu>
+                    <van-dropdown-item v-model="form.sex" :options="option" />
+                </van-dropdown-menu>
             </div>
 
             <!-- 个人简介 -->
-            <div class="login-input login-code">
-                <van-field v-model="form.synopsis" type="text" input-align="center" placeholder="请输入密码"/>
+            <div class="login-input">
+                <span>个人简介</span>
+                <van-field v-model="form.synopsis"/>
             </div>
         </div>
 
@@ -54,12 +63,18 @@ export default {
     data() {
         return {
             form:{
+                imgUrl:'',
                 userName: '',
                 tel: '',
                 password: '',
                 sex: '',
                 synopsis: ''
-            }
+            },
+            value1: 0,
+            option: [
+                { text: '男', value: 0 },
+                { text: '女', value: 1 },
+            ],
         }
     },
     computed:{
@@ -67,6 +82,15 @@ export default {
             userInfo: state => state.userInfo
         }),
         // ...mapMutations(['loginOut'])
+    },
+    created() {
+        console.log(this.$store.state.userInfo)
+        this.form.imgUrl = this.$store.state.userInfo.imgUrl
+        this.form.userName = this.$store.state.userInfo.userName
+        this.form.tel = this.$store.state.userInfo.tel
+        this.form.password = this.$store.state.userInfo.password
+        this.form.sex = this.$store.state.userInfo.sex
+        this.form.synopsis = this.$store.state.userInfo.synopsis
     },
 
     methods: {
@@ -85,7 +109,11 @@ export default {
             getCollect({isToken:true}).then((res) => {
                 console.log(res);
             });
-        }
+        },
+
+        onSelect(action) {
+            console.log(action)
+        },
     }
 }
 </script>
@@ -123,6 +151,87 @@ export default {
     div{
         margin-top: 5px;
         font-size: 12px;
+    }
+}
+
+/* 头像以下部分 */
+.login-inner{
+    div{
+        padding-top:20px;
+        span{
+            padding-left: 20px;
+        }
+        .van-field{
+            margin: 0 auto;
+            width: 90%;
+            height: 40px;
+            background: none;
+            border-bottom: 1px solid #a5a5a5;
+            ::v-deep .van-field__value{
+                line-height: 0px;
+            }
+            ::v-deep .van-field__control{
+                color: #c2c2c2;
+                font-size: 12px;
+            }
+        }
+        /* 性别 */
+        .van-dropdown-menu{
+            margin: 0 auto;
+            padding-top: 0;
+            width: 90%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            ::v-deep .van-dropdown-menu__bar{
+                width: 100%;
+                height: 40px;
+                border-bottom: 1px solid #a5a5a5;
+                padding-left: 20px;
+                background: none;
+                .van-dropdown-menu__item{
+                    position: absolute;
+                    left: 10px;
+                    bottom: 3px;
+                    .van-dropdown-menu__title{
+                        font-size: 12px;
+                        color: #c2c2c2;
+                    }
+                }
+            }
+        }
+        /* 性别下拉 */
+        ::v-deep .van-popup{
+            background: red;
+            .van-cell{
+                background: #252525;
+                .van-cell__title{
+                    color: #c2c2c2;
+                }
+            }
+        }
+    }
+}
+
+
+//登录按钮
+.login-btn{
+    margin-bottom: 15px;
+    text-align: center;
+    .van-button{
+        width: 100%;
+        color:#e2e2e2;
+    }
+}
+
+//注册按钮
+.login-register{
+    text-align: center;
+    font-size: 12px;
+    color:#a5a5a5;
+    span{
+        margin: 0 15px;
+        cursor: pointer;
     }
 }
 </style>
