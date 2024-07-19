@@ -3,7 +3,7 @@
         <div class="user-box">
             <!-- 头像 -->
             <div class="user-avatar">
-                <img src="@/assets/image/blob_20230718065431A001.jpeg" alt="">
+                <img src="../../assets/image/12-55-26.jpg" alt="">
                 <div>{{ userInfo.userName }}</div>
                 <div>{{ userInfo.tel }}</div>
             </div>
@@ -92,8 +92,7 @@ export default {
 <style scoped lang="scss">
 .user-page{
     width: 96%;
-    margin: auto;
-    margin-top: 75px;
+    margin: 75px auto 60px auto;
 }
 
 /* 个人资料 */
@@ -200,7 +199,7 @@ export default {
 
 /* 退出 */
 .login-btn{
-    margin: 50px auto;
+    margin: 50px auto 100px auto;
     text-align: center;
     .van-button{
         width: 200px;

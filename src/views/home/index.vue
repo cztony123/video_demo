@@ -15,7 +15,7 @@
                     <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
                         <div>
                             <div class="video-title">
-                                <span> <van-icon name="fire-o" />热门影片 </span>
+                                <span> <van-icon name="fire-o" />热门影片</span>
                                 <span>
                                     <span> 更多<van-icon name="arrow" /> </span>
                                     <span class="row-num" @click="isShow()">

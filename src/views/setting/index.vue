@@ -1,6 +1,6 @@
 <template>
-    <div>
-        {{ pageName }}
+    <div class="pageName">
+        开发中。。。
     </div>
 </template>
 <script>
@@ -12,3 +12,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.pageName{
+    color: #fff;
+}
+</style>

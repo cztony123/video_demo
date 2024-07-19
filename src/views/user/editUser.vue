@@ -8,10 +8,21 @@
         </div>
 
         <div class="deit-avatar">
-            <img v-if="form.imgUrl" :src="form.imgUrl" alt="">
-            <img v-else src="../../assets/logo.png" alt="">
+            <!-- <img v-if="form.imgUrl" :src="form.imgUrl" alt=""> -->
+            <span @click="handleUpLoad">
+                <img src="../../assets/image/12-55-26.jpg" alt="">
+            </span>
             <div>点击更换头像</div>
         </div>
+
+        <div class="deit-avatar">
+            <span @click="handleUpLoad">
+                <van-uploader v-model="imgUrl" :after-read="afterRead" :max-count="1"/>
+            </span>
+            <div>点击更换头像</div>
+        </div>
+
+
             
         <div class="login-inner">
             <!-- 用户名 -->
@@ -56,7 +67,7 @@
 </template>
 
 <script>
-import { getCollect } from "@/api/user/index";
+import { getCollect, upLoad } from "@/api/user/index";
 import {mapState} from 'vuex'
 // import {mapMutations} from 'vuex'
 export default {
@@ -74,6 +85,9 @@ export default {
             option: [
                 { text: '男', value: 0 },
                 { text: '女', value: 1 },
+            ],
+            imgUrl: [
+                { url: 'https://img01.yzcdn.cn/vant/leaf.jpg' },
             ],
         }
     },
@@ -98,10 +112,17 @@ export default {
         goBack(){
             history.go(-1);
         },
-        //退出登录
-        onLoginOut(){
-            this.$store.commit('loginOut')
-            this.$router.push('/login')
+
+        //更改头像
+        afterRead(file) {
+            // 创建FormData
+            const formData = new FormData();
+            formData.append('file', file.file); // 这里的'file'是后端接收文件的字段名
+        
+            // 示例：使用axios上传图片
+            upLoad(formData).then((res) => {
+                console.log(res);
+            });
         },
 
         //修改头像

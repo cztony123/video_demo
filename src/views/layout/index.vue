@@ -15,7 +15,7 @@
                 <van-cell is-link @click="showPopup">
                     <van-button round type="info" size="small" icon="filter-o" color="#222222" @click="onSearch(value)">筛选</van-button>
                 </van-cell>
-                <van-popup v-model="show" position="top" :style="{ height: '35%' }">
+                <van-popup v-model="show" position="top" :style="{ height: '41%' }">
                     <van-tabs type="card" background="#222222" title-inactive-color="#8d8d8d" title-active-color="#ff2a14" v-for="item in filterList">
                         <div v-for="children in item.children">
                             <van-tab :title="children.title" swipeable></van-tab>
