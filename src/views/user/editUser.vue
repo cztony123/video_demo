@@ -65,11 +65,11 @@ export default {
                 userName: '',
                 tel: '',
                 password: '',
-                sex: 1,
+                sex: 0,
                 synopsis: ''
             },
             option: [
-                // { text: '未知', value: 0 },
+                { text: 'NO', value: 0 },
                 { text: '男', value: 1 },
                 { text: '女', value: 2 },
             ],
@@ -84,7 +84,6 @@ export default {
         }),
     },
     created() {
-        console.log(this.$store.state.userInfo)
         if(this.$store.state.userInfo){
             this.imgUrl[0].url = this.$store.state.userInfo.imgUrl ? this.$store.state.userInfo.imgUrl : require('../../assets/logo.png')
             this.form.userName = this.$store.state.userInfo.userName
@@ -108,7 +107,6 @@ export default {
             formData.append('file', file.file); // 这里的'file'是后端接收文件的字段名
         
             upLoad(formData).then((res) => {
-                console.log(res)
                 if(res.code == 200){
                     let userInfo = this.$store.state.userInfo
                     userInfo.imgUrl = res.data.imgUrl
@@ -126,12 +124,15 @@ export default {
                 ...this.form
             }
             updateUser(params).then((res) => {
-                console.log(res)
                 if(res.code == 200){
-                    // let userInfo = this.$store.state.userInfo
-                    // userInfo.imgUrl = res.data.imgUrl
-                    // localStorage.setItem('userInfo', JSON.stringify(userInfo)); //本地 存储用户信息
-                    // Toast(res.message);
+                    let userInfo = this.$store.state.userInfo
+                    userInfo.userName = res.data.userName
+                    userInfo.tel = res.data.tel
+                    userInfo.password = res.data.password
+                    userInfo.sex = res.data.sex
+                    userInfo.synopsis = res.data.synopsis
+                    localStorage.setItem('userInfo', JSON.stringify(userInfo)); //本地 存储用户信息
+                    Toast(res.message);
                 }else{
                     Toast(res.message);
                 }

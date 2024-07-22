@@ -3,7 +3,7 @@
         <div class="user-box">
             <!-- 头像 -->
             <div class="user-avatar">
-                <img :src="userInfo ? userInfo.imgUrl : url" alt="">
+                <img :src="userInfo && userInfo.imgUrl ? userInfo.imgUrl : url" alt="">
                 <div>{{ userInfo ? userInfo.userName : '游客' }}</div>
                 <div>{{ userInfo ? userInfo.tel : '' }}</div>
             </div>
