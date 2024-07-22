@@ -69,8 +69,9 @@ export default {
                 synopsis: ''
             },
             option: [
-                { text: '男', value: 0 },
-                { text: '女', value: 1 },
+                // { text: '未知', value: 0 },
+                { text: '男', value: 1 },
+                { text: '女', value: 2 },
             ],
             imgUrl: [
                 { url: require('../../assets/logo.png') },
