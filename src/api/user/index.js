@@ -9,11 +9,11 @@ export function upLoad(data) {
     });
 }
 
-//更改头像
-export function getCollect(query) {
+//更改用户信息
+export function updateUser(data) {
     return request({
-        url: '/users/api/collect',
-        method: 'get',
-        params: query
+        url: '/users/api/updateUser',
+        method: 'post',
+        data: data
     });
 }

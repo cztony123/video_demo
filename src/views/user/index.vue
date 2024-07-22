@@ -3,9 +3,9 @@
         <div class="user-box">
             <!-- 头像 -->
             <div class="user-avatar">
-                <img src="../../assets/image/12-55-26.jpg" alt="">
-                <div>{{ userInfo.userName }}</div>
-                <div>{{ userInfo.tel }}</div>
+                <img :src="userInfo ? userInfo.imgUrl : url" alt="">
+                <div>{{ userInfo ? userInfo.userName : '游客' }}</div>
+                <div>{{ userInfo ? userInfo.tel : '' }}</div>
             </div>
 
             <!-- 会员 -->
@@ -42,23 +42,21 @@
         </div>
             
         <div class="login-btn">
-            <van-button round type="primary" @click="onLoginOut">退出登录</van-button>
+            <van-button round type="primary" @click="onLoginOut">{{userInfo ? "退出登录" : "登录"}}</van-button>
         </div>
-        <!-- <div class="login-btn">
-            <van-button round type="primary" @click="editAvatar">修改头像</van-button>
-        </div>
-        {{ userInfo }} -->
     </div>
 </template>
 
 <script>
 import { getCollect } from "@/api/user/index";
 import {mapState} from 'vuex'
+import { Toast } from 'vant';
 // import {mapMutations} from 'vuex'
 export default {
     data() {
         return {
-            pageName: 'user'
+            isLogin: true,
+            url: require('../../assets/logo.png')
         }
     },
     computed:{
@@ -71,12 +69,22 @@ export default {
     methods: {
         //编辑按钮
         goEdit(){
-            this.$router.push('/editUser')
+            if(this.userInfo){
+                this.$router.push('/editUser')
+            }else{
+                Toast('请先登录');
+            }
+            
         },
         //退出登录
         onLoginOut(){
-            this.$store.commit('loginOut')
-            this.$router.push('/login')
+            // this.isLogin = !this.isLogin
+            if(this.userInfo){
+                this.$store.commit('loginOut')
+                this.$router.go(0);
+            }else{
+                this.$router.push('/login')
+            }
         },
 
         //修改头像

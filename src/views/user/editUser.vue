@@ -8,21 +8,11 @@
         </div>
 
         <div class="deit-avatar">
-            <!-- <img v-if="form.imgUrl" :src="form.imgUrl" alt=""> -->
-            <span @click="handleUpLoad">
-                <img src="../../assets/image/12-55-26.jpg" alt="">
-            </span>
-            <div>点击更换头像</div>
-        </div>
-
-        <div class="deit-avatar">
-            <span @click="handleUpLoad">
+            <span>
                 <van-uploader v-model="imgUrl" :after-read="afterRead" :max-count="1"/>
             </span>
             <div>点击更换头像</div>
         </div>
-
-
             
         <div class="login-inner">
             <!-- 用户名 -->
@@ -58,36 +48,32 @@
             </div>
         </div>
 
-
-        <!-- <div class="login-btn">
-            <van-button round type="primary" @click="editAvatar">修改头像</van-button>
+        <div class="upDate-btn">
+            <van-button round type="primary" @click="onUpData">保存</van-button>
         </div>
-        {{ userInfo }} -->
     </div>
 </template>
 
 <script>
-import { getCollect, upLoad } from "@/api/user/index";
+import { upLoad, updateUser } from "@/api/user/index";
 import {mapState} from 'vuex'
-// import {mapMutations} from 'vuex'
+import { Toast } from 'vant';
 export default {
     data() {
         return {
             form:{
-                imgUrl:'',
                 userName: '',
                 tel: '',
                 password: '',
-                sex: '',
+                sex: 1,
                 synopsis: ''
             },
-            value1: 0,
             option: [
                 { text: '男', value: 0 },
                 { text: '女', value: 1 },
             ],
             imgUrl: [
-                { url: 'https://img01.yzcdn.cn/vant/leaf.jpg' },
+                { url: require('../../assets/logo.png') },
             ],
         }
     },
@@ -95,16 +81,17 @@ export default {
         ...mapState({
             userInfo: state => state.userInfo
         }),
-        // ...mapMutations(['loginOut'])
     },
     created() {
         console.log(this.$store.state.userInfo)
-        this.form.imgUrl = this.$store.state.userInfo.imgUrl
-        this.form.userName = this.$store.state.userInfo.userName
-        this.form.tel = this.$store.state.userInfo.tel
-        this.form.password = this.$store.state.userInfo.password
-        this.form.sex = this.$store.state.userInfo.sex
-        this.form.synopsis = this.$store.state.userInfo.synopsis
+        if(this.$store.state.userInfo){
+            this.imgUrl[0].url = this.$store.state.userInfo.imgUrl ? this.$store.state.userInfo.imgUrl : require('../../assets/logo.png')
+            this.form.userName = this.$store.state.userInfo.userName
+            this.form.tel = this.$store.state.userInfo.tel
+            this.form.password = this.$store.state.userInfo.password
+            this.form.sex = this.$store.state.userInfo.sex
+            this.form.synopsis = this.$store.state.userInfo.synopsis
+        }
     },
 
     methods: {
@@ -119,22 +106,36 @@ export default {
             const formData = new FormData();
             formData.append('file', file.file); // 这里的'file'是后端接收文件的字段名
         
-            // 示例：使用axios上传图片
             upLoad(formData).then((res) => {
-                console.log(res);
+                console.log(res)
+                if(res.code == 200){
+                    let userInfo = this.$store.state.userInfo
+                    userInfo.imgUrl = res.data.imgUrl
+                    localStorage.setItem('userInfo', JSON.stringify(userInfo)); //本地 存储用户信息
+                    Toast(res.message);
+                }else{
+                    Toast(res.message);
+                }
             });
         },
 
-        //修改头像
-        editAvatar(){
-            getCollect({isToken:true}).then((res) => {
-                console.log(res);
+        //保存用户信息
+        onUpData(){
+            let params = {
+                ...this.form
+            }
+            updateUser(params).then((res) => {
+                console.log(res)
+                if(res.code == 200){
+                    // let userInfo = this.$store.state.userInfo
+                    // userInfo.imgUrl = res.data.imgUrl
+                    // localStorage.setItem('userInfo', JSON.stringify(userInfo)); //本地 存储用户信息
+                    // Toast(res.message);
+                }else{
+                    Toast(res.message);
+                }
             });
-        },
-
-        onSelect(action) {
-            console.log(action)
-        },
+        }
     }
 }
 </script>
@@ -162,12 +163,19 @@ export default {
 }
 
 /* 编辑头像 */
-.deit-avatar{
-    margin-top: 20px;
+::v-deep .deit-avatar{
+    height: 130px;
+    margin-top: 25px;
     text-align: center;
-    img{
-        width: 70px;
-            border-radius: 50%;
+    .van-uploader__preview-image{
+        border-radius: 50%;
+    }
+    .van-uploader__preview{
+        margin: 0;
+    }
+    .van-uploader__upload{
+        margin: 5px 0 4px 0;
+        border-radius: 50%;
     }
     div{
         margin-top: 5px;
@@ -235,24 +243,14 @@ export default {
 }
 
 
-//登录按钮
-.login-btn{
-    margin-bottom: 15px;
+.upDate-btn{
+    margin: 50px auto 100px auto;
     text-align: center;
     .van-button{
-        width: 100%;
-        color:#e2e2e2;
-    }
-}
-
-//注册按钮
-.login-register{
-    text-align: center;
-    font-size: 12px;
-    color:#a5a5a5;
-    span{
-        margin: 0 15px;
-        cursor: pointer;
+        width: 200px;
+        background: none;
+        border: 1px solid #d13434;;
+        color: #b6b6b6;
     }
 }
 </style>
