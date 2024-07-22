@@ -64,6 +64,9 @@ export default {
             case '/user':
                 this.active = 3;
                 break;
+            case '/editUser':
+                this.active = 3;
+                break;
             default:
         }
     },
