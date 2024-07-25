@@ -1,11 +1,3 @@
-//轮播图数据
-export const images = [
-    require('../../assets/image/lunbo1.jpg'),
-    require('../../assets/image/lunbo2.jpg'),
-    require('../../assets/image/lunbo3.jpg'),
-]
-
-
 //列数下拉数据
 export const optionList = [
     { text: '1列', value: 1 },

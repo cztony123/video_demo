@@ -6,19 +6,19 @@
                     <img src="../../assets/logo.png" alt="">
                 </div>
                 <div class="searchBox">
-                    <van-search v-model="value" show-action shape="round" show-action-color='red' background="transparent" placeholder="请输入关键词" @click="onSearch(value)">
+                    <van-search v-model="title" show-action shape="round" show-action-color='red' background="transparent" placeholder="请输入关键词">
                         <template #action>
-                            <van-button round type="info" size="small" icon="search" color="#222222" @click="onSearch(value)">搜索</van-button>
+                            <van-button round type="info" size="small" icon="search" color="#222222" @click="onSearch(title)">搜索</van-button>
                         </template>
                     </van-search>
                 </div>
-                <van-cell is-link @click="showPopup">
-                    <van-button round type="info" size="small" icon="filter-o" color="#222222" @click="onSearch(value)">筛选</van-button>
+                <van-cell is-link>
+                    <van-button round type="info" size="small" icon="filter-o" color="#222222" @click="onSelect">筛选</van-button>
                 </van-cell>
                 <van-popup v-model="show" position="top" :style="{ height: '41%' }">
-                    <van-tabs type="card" background="#222222" title-inactive-color="#8d8d8d" title-active-color="#ff2a14" v-for="item in filterList">
-                        <div v-for="children in item.children">
-                            <van-tab :title="children.title" swipeable></van-tab>
+                    <van-tabs type="card" background="#222222" title-inactive-color="#8d8d8d" title-active-color="#ff2a14" v-for="item in filterList" @click="aaa">
+                        <div v-for="children in item.children" >
+                            <van-tab :title="children.title" swipeable ></van-tab>
                         </div>
                     </van-tabs>
                 </van-popup>
@@ -46,7 +46,7 @@ import { filterList } from '../home/data';
 export default {
     data () {
         return {
-            value: '',
+            title: '',
             active: 0,
             show: false,
             filterList,
@@ -72,14 +72,18 @@ export default {
     },
     methods: {
         //搜索按钮
-        onSearch(val){
-            // console.log(val)
+        onSearch(title){
+            this.$bus.$emit("eventname",title)
         },
 
         //筛选按钮
-        showPopup() {
+        onSelect() {
             this.show = true;
         },
+        aaa(event){
+            // const activeTab = event;
+            console.log(event)
+        }
     },
 };
 </script>

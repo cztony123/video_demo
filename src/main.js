@@ -10,7 +10,8 @@ import './views/style/index.css'
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 import 'vue-video-player/src/custom-theme.css'
- 
+
+Vue.prototype.$bus = new Vue(); //事件总线
 Vue.use(VueVideoPlayer)
 Vue.use(Popup);
 Vue.use(Lazyload);

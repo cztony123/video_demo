@@ -6,8 +6,8 @@
                 <div class="one-page">
                     <!-- 轮播图 -->
                     <van-swipe class="my-swipe" :autoplay="3000">
-                        <van-swipe-item v-for="(image, index) in images" :key="index">
-                            <img width="100% " height="100%" :src="image" />
+                        <van-swipe-item v-for="(item, index) in swipeList" :key="index">
+                            <img width="100% " height="100%" :src="item.url" />
                         </van-swipe-item>
                     </van-swipe>
 
@@ -47,18 +47,25 @@
 <script>
 import { getTabbarList, getSwipeList, getList } from "@/api/home/index";
 import { imageList, images, optionList } from "./data";
+import { Toast } from 'vant';
 export default {
     data () {
         return {
             topBar: [],
             active: '',
             isLoading: false, //下拉刷新遮罩层
-            images, //轮播图数据
+            swipeList: [], //轮播图数据
             imageList, //列表数据
             isOpen: false, //列数下拉初始隐藏
             rowNum: 2, //列数初始值
             optionList, //列数下拉数据
             tabIndex: 0, //当前点击的tab索引
+
+            title: '', //搜索框的值
+            form:{
+                pageNum: 1,
+                pageSize: 10,
+            }
         }
     },
     created () {
@@ -66,6 +73,10 @@ export default {
         this.tabIndex = this.active
         this.getSwipeDataList()
         this.fetchData();
+        this.$bus.$on("eventname",(title)=>{
+            this.title = title
+            this.fetchData();
+        });
     },
     methods: {
         //请求tab数据
@@ -77,9 +88,13 @@ export default {
 
         //请求轮播图
         getSwipeDataList() {
-            // getSwipeList().then((res) => {
-            //     console.log(res);
-            // });
+            getSwipeList().then((res) => {
+                if(res.code == 200){
+                    this.swipeList = res.data
+                }else{
+                    Toast(res.message);
+                }
+            });
         },
 
         //下拉刷新
@@ -103,9 +118,14 @@ export default {
 
         //列表接口
         fetchData() {
-            // getList(this.tabIndex).then((res) => {
-            //     console.log(res);
-            // });
+            let params = {
+                title: this.title,
+                ...this.form
+            }
+            console.log(params)
+            getList(params).then((res) => {
+                console.log(res);
+            });
         },
 
         //点击播放跳转详情页

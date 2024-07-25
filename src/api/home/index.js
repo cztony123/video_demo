@@ -21,7 +21,7 @@ export function getSwipeList(query) {
 //列表数据
 export function getList(query) {
     return request({
-        url: `/api/home/${query}/list/1`,
+        url: `/api/home/list`,
         method: 'get',
         params: query
     });
