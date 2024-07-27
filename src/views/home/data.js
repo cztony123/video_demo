@@ -7,126 +7,10 @@ export const optionList = [
 ]
 
 
-//首页数据列表
-export const imageList = [
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '草木人间'
-    },
-    {
-        url:'https://image.maimn.com/cover/230fd6d29005cc05d3586a611cb25131.jpg',
-        videoName: '猩球崛起：新世界'
-    },
-    {
-        url:'https://image.maimn.com/cover/26317dce2f9d6ed627386f34400be2ec.jpg',
-        videoName: '金手指 国语版'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '死神来了'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '草木人间'
-    },
-    {
-        url:'https://image.maimn.com/cover/230fd6d29005cc05d3586a611cb25131.jpg',
-        videoName: '猩球崛起：新世界'
-    },
-    {
-        url:'https://image.maimn.com/cover/26317dce2f9d6ed627386f34400be2ec.jpg',
-        videoName: '金手指 国语版'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '死神来了'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '草木人间'
-    },
-    {
-        url:'https://image.maimn.com/cover/230fd6d29005cc05d3586a611cb25131.jpg',
-        videoName: '猩球崛起：新世界'
-    },
-    {
-        url:'https://image.maimn.com/cover/26317dce2f9d6ed627386f34400be2ec.jpg',
-        videoName: '金手指 国语版'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '死神来了'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '草木人间'
-    },
-    {
-        url:'https://image.maimn.com/cover/230fd6d29005cc05d3586a611cb25131.jpg',
-        videoName: '猩球崛起：新世界'
-    },
-    {
-        url:'https://image.maimn.com/cover/26317dce2f9d6ed627386f34400be2ec.jpg',
-        videoName: '金手指 国语版'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '死神来了'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '草木人间'
-    },
-    {
-        url:'https://image.maimn.com/cover/230fd6d29005cc05d3586a611cb25131.jpg',
-        videoName: '猩球崛起：新世界'
-    },
-    {
-        url:'https://image.maimn.com/cover/26317dce2f9d6ed627386f34400be2ec.jpg',
-        videoName: '金手指 国语版'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '死神来了'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '草木人间'
-    },
-    {
-        url:'https://image.maimn.com/cover/230fd6d29005cc05d3586a611cb25131.jpg',
-        videoName: '猩球崛起：新世界'
-    },
-    {
-        url:'https://image.maimn.com/cover/26317dce2f9d6ed627386f34400be2ec.jpg',
-        videoName: '金手指 国语版'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '死神来了'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '草木人间'
-    },
-    {
-        url:'https://image.maimn.com/cover/230fd6d29005cc05d3586a611cb25131.jpg',
-        videoName: '猩球崛起：新世界'
-    },
-    {
-        url:'https://image.maimn.com/cover/26317dce2f9d6ed627386f34400be2ec.jpg',
-        videoName: '金手指 国语版'
-    },
-    {
-        url:'https://image11.m1905.cn/mdb/uploadfile/2024/0313/thumb_1_283_390_20240313120338498959.jpg',
-        videoName: '死神来了'
-    },
-]
-
-
 //筛选列表数据
 export const filterList = [
     {
+        id: 0,
         children: [
             {title: '全部类型'},
             {title: '内地综艺'},
@@ -137,6 +21,7 @@ export const filterList = [
         ]
     },
     {
+        id: 1,
         children: [
             {title: '全部剧情'},              
             {title: '选秀'},
@@ -156,6 +41,7 @@ export const filterList = [
         ]
     },
     {
+        id: 2,
         children: [
             {title: '全部地区'},              
             {title: '内地'},
@@ -165,6 +51,7 @@ export const filterList = [
         ]
     },
     {
+        id: 3,
         children: [
             {title: '全部语言'},              
             {title: '国语'},
@@ -177,6 +64,7 @@ export const filterList = [
         ]
     },
     {
+        id: 4,
         children: [
             {title: '全部时间'},              
             {title: '2023'},
@@ -196,6 +84,7 @@ export const filterList = [
         ]
     },
     {
+        id: 5,
         children: [
             {title: '字母查找'},              
             {title: 'A'},
@@ -228,6 +117,7 @@ export const filterList = [
         ]
     },
     {
+        id: 6,
         children: [
             {title: '推荐排序'}, 
             {title: '最新排序'},             

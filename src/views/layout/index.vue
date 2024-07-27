@@ -16,7 +16,7 @@
                     <van-button round type="info" size="small" icon="filter-o" color="#222222" @click="onSelect">筛选</van-button>
                 </van-cell>
                 <van-popup v-model="show" position="top" :style="{ height: '41%' }">
-                    <van-tabs type="card" background="#222222" title-inactive-color="#8d8d8d" title-active-color="#ff2a14" v-for="item in filterList" @click="aaa">
+                    <van-tabs type="card" background="#222222" title-inactive-color="#8d8d8d" title-active-color="#ff2a14" v-for="item in filterList" @click="handleSelect">
                         <div v-for="children in item.children" >
                             <van-tab :title="children.title" swipeable ></van-tab>
                         </div>
@@ -71,6 +71,11 @@ export default {
         }
     },
     methods: {
+        //处理传给后端的关键词（包含搜索框和筛选）
+        keyWords(){
+            
+        },
+
         //搜索按钮
         onSearch(title){
             this.$bus.$emit("eventname",title)
@@ -80,9 +85,10 @@ export default {
         onSelect() {
             this.show = true;
         },
-        aaa(event){
-            // const activeTab = event;
-            console.log(event)
+
+        //点击关键词
+        handleSelect(name, title){
+            console.log(name, title)
         }
     },
 };

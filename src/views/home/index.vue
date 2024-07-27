@@ -46,7 +46,7 @@
 
 <script>
 import { getTabbarList, getSwipeList, getList } from "@/api/home/index";
-import { imageList, images, optionList } from "./data";
+import { optionList } from "./data";
 import { Toast } from 'vant';
 export default {
     data () {
@@ -55,7 +55,7 @@ export default {
             active: '',
             isLoading: false, //下拉刷新遮罩层
             swipeList: [], //轮播图数据
-            imageList, //列表数据
+            imageList: [], //列表数据
             isOpen: false, //列数下拉初始隐藏
             rowNum: 2, //列数初始值
             optionList, //列数下拉数据
@@ -122,9 +122,13 @@ export default {
                 title: this.title,
                 ...this.form
             }
-            console.log(params)
             getList(params).then((res) => {
-                console.log(res);
+                console.log(res,'000000');
+                if(res.code == 200){
+                    this.imageList = res.data
+                }else{
+                    Toast(res.message);
+                }
             });
         },
 
